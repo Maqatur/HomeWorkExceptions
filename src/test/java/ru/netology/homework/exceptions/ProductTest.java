@@ -32,9 +32,10 @@ public class ProductTest {
     @Test
     public void removeTest() {
         ShopRepository shopRepository = new ShopRepository();
+        shopRepository.add(product);
         shopRepository.remove(5);
 
-        Product[] expected = new Product[0];
+        Product[] expected = {};
         Product[] actual = shopRepository.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -43,9 +44,9 @@ public class ProductTest {
     @Test
     public void notFoundExceptionsTest() {
         ShopRepository shopRepository = new ShopRepository();
-        shopRepository.remove(-1);
+        shopRepository.add(product);
 
-        Assertions.assertThrows(NotFoundException.class, () ->{
+        Assertions.assertThrows(NotFoundException.class, () -> {
             shopRepository.remove(-1);
         });
     }
